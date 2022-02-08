@@ -17,8 +17,10 @@ class Getter{
     }
 
     save(name: string = "page.html"){
-        const savePath = path.resolve(__dirname, `../public/${name}`);
-        fs.writeFileSync(savePath, this._html);
+        const dir = path.resolve(__dirname, "../public");
+        const saveDir = `${dir}/${name}`;
+        if(!fs.existsSync(dir)) fs.mkdirSync(dir);
+        fs.writeFileSync(saveDir, this._html);
     }
 
     get url(): string{
