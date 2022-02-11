@@ -16,9 +16,9 @@ class Getter{
         return new Getter(url, htmlRequest);
     }
 
-    save(name: string = "page.html"){
+    save(name: string = "page"){
         const dir = path.resolve(__dirname, "../public");
-        const saveDir = `${dir}/${name}`;
+        const saveDir = `${dir}/${name}.html`;
         if(!fs.existsSync(dir)) fs.mkdirSync(dir);
         fs.writeFileSync(saveDir, this._html);
     }

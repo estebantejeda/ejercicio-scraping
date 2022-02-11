@@ -9,6 +9,7 @@ class App {
         const URL = "https://www.bcn.cl/siit/reportescomunales/comunas_v.html?anno=2020&idcom=14101";
         const bcn = await Getter.build(URL);
         const html = bcn.html;
+        bcn.save();
 
         const $ = cheerio.load(html);
 
