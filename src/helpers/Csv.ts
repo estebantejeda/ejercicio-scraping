@@ -2,18 +2,18 @@ import {Parser} from "json2csv";
 import fs from "fs";
 import path from "path";
 
-class Csv <ObjectType>{
-    #object: ObjectType[];
+class Csv <ArrayType>{
+    #array: ArrayType[];
     #csv: string;
 
-    constructor (object: ObjectType[]){
-        this.#object = object;
+    constructor (array: ArrayType[]){
+        this.#array = array;
         this.#csv = this.createCsv();
     }
 
     private createCsv(){
         const json2CsvParser = new Parser();
-        return json2CsvParser.parse(this.#object);
+        return json2CsvParser.parse(this.#array);
     }
 
     save(name: string){
@@ -27,9 +27,10 @@ class Csv <ObjectType>{
         return this.#csv;
     }
 
-    get object(){
-        return this.#object;
+    get array(){
+        return this.#array;
     }
+
 }
 
 export default Csv;

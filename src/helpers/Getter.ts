@@ -23,11 +23,11 @@ class Getter{
         fs.writeFileSync(saveDir, this._html);
     }
 
-    get url(): string{
+    get url(){
         return this._url;
     }
 
-    get html(): string{
+    get html(){
         return this._html;
     }
 
