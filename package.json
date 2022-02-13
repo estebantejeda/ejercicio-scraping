@@ -19,6 +19,7 @@
   "homepage": "https://github.com/estebantejeda/ejercicio-scraping#readme",
   "devDependencies": {
     "@types/cheerio": "^0.22.31",
+    "@types/json2csv": "^5.0.3",
     "@types/request": "^2.48.8",
     "@types/request-promise": "^4.1.48",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
+    "json2csv": "^5.0.6",
     "request": "^2.88.2",
     "request-promise": "^4.2.6"
   }

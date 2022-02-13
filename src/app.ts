@@ -1,5 +1,6 @@
 import cheerio from "cheerio";
 import Getter from "./helpers/Getter";
+import Csv from "./helpers/Csv";
 
 import TasaPobreza from "./Interfaces/TasaPobreza";
 import PoblacionCarente from "./Interfaces/PoblacionCarente";
@@ -46,8 +47,12 @@ class App {
             }).get();
 
         });
-        console.log(tasPobArr);
-        console.log(poblCarArr);
+
+        const tasPobArrCsv = new Csv(tasPobArr);
+        const poblCarArrCsv = new Csv(poblCarArr);
+        tasPobArrCsv.save("tasa");
+        poblCarArrCsv.save("poblacion");
+        
     }
 }
 
