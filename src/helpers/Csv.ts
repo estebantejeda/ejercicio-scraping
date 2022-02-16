@@ -21,6 +21,7 @@ class Csv <ArrayType>{
         const saveDir = `${dir}/${name}.csv`;
         if(!fs.existsSync(dir)) fs.mkdirSync(dir);
         fs.writeFileSync(saveDir, this.#csv);
+        console.log(`CSV saved in ${saveDir}`);
     }
 
     get csv(){

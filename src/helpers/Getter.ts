@@ -21,6 +21,7 @@ class Getter{
         const saveDir = `${dir}/${name}.html`;
         if(!fs.existsSync(dir)) fs.mkdirSync(dir);
         fs.writeFileSync(saveDir, this._html);
+        console.log(`HTML saved in ${saveDir}`);
     }
 
     get url(){
