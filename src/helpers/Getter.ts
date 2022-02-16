@@ -16,12 +16,12 @@ class Getter{
         return new Getter(url, htmlRequest);
     }
 
-    save(name: string = "page"){
+    save(name: string = "page", extension: string = "html"){
         const dir = path.resolve(__dirname, "../public");
-        const saveDir = `${dir}/${name}.html`;
+        const saveDir = `${dir}/${name}.${extension}`;
         if(!fs.existsSync(dir)) fs.mkdirSync(dir);
         fs.writeFileSync(saveDir, this._html);
-        console.log(`HTML saved in ${saveDir}`);
+        console.log(`${extension.toUpperCase()} saved in ${saveDir}`);
     }
 
     get url(){
