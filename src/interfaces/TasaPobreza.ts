@@ -1,4 +1,6 @@
-interface TasaPobreza {
+import DataInformation from "./DataInformation";
+
+interface TasaPobreza extends DataInformation{
     unidadTerritorial: string;
     porIngresos: number;
     multidimensional: number;
