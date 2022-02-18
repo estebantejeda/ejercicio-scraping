@@ -3,12 +3,12 @@ import fs from "fs";
 import path from "path";
 
 class Getter{
-    private _url: string;
-    private _html: string;
+    #url: string;
+    #html: string;
 
     private constructor (url: string, html: string){
-        this._url = url;
-        this._html = html;
+        this.#url = url;
+        this.#html = html;
     }
 
     static async build(url: string): Promise<Getter>{
@@ -20,16 +20,16 @@ class Getter{
         const dir = path.resolve(__dirname, "../public");
         const saveDir = `${dir}/${name}.${extension}`;
         if(!fs.existsSync(dir)) fs.mkdirSync(dir);
-        fs.writeFileSync(saveDir, this._html);
+        fs.writeFileSync(saveDir, this.#html);
         console.log(`${extension.toUpperCase()} saved in ${saveDir}`);
     }
 
     get url(){
-        return this._url;
+        return this.#url;
     }
 
     get html(){
-        return this._html;
+        return this.#html;
     }
 
 }
