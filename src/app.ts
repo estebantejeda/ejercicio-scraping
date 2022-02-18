@@ -1,7 +1,6 @@
 import cheerio from "cheerio";
 import Getter from "./helpers/Getter";
 import Csv from "./helpers/Csv";
-
 import TasaPobreza from "./interfaces/TasaPobreza";
 import PoblacionCarente from "./interfaces/PoblacionCarente";
 import extractionType from "./enums/ExtractionType";
@@ -27,14 +26,16 @@ async function main() {
             const porIng = $(tds[1]).text().trim();
             const multDim = $(tds[2]).text().trim();
             if (uniTer === "" || porIng === "" || multDim === "") return;
+            const porIngresos = stringToNumber(porIng);
+            const multidimensional = stringToNumber(multDim);
             return {
-                unidadTerritorial: uniTer,
-                porIngresos: porIng,
-                multidimensional: multDim,
-                url: URL,
+                porIngresos,
+                multidimensional,
                 date,
+                url: URL,
+                unidadTerritorial: uniTer,
                 extractionLevel: extractionType.COMUNAL
-            };
+            } as TasaPobreza;
         }).get();
 
         poblCarArr = $(tables[1]).find("tr").map((_idx, elem) => {
@@ -43,14 +44,16 @@ async function main() {
             const perCar = $(tds[1]).text().trim();
             const hogHac = $(tds[2]).text().trim();
             if (uniTer === "" || perCar === "" || hogHac === "") return;
-            return {
-                unidadTerritorial: uniTer,
-                personasCarentes: perCar,
-                hogaresHacinados: hogHac,
-                url: URL,
+            const personasCarentes = stringToNumber(perCar);
+            const hogaresHacinados = stringToNumber(hogHac);
+            return { 
+                personasCarentes, 
+                hogaresHacinados,
                 date,
+                unidadTerritorial: uniTer,
+                url: URL,
                 extractionLevel: extractionType.COMUNAL
-            };
+            } as PoblacionCarente;
         }).get();
 
     });
@@ -61,5 +64,11 @@ async function main() {
     tasPobArrCsv.save("tasa");
     poblCarArrCsv.save("poblacion");
 }
+
+const stringToNumber = (textNumber: string): Number => {
+    const replaceCommaToDot = textNumber.replace(",", ".");
+    const finalNumber = parseFloat(replaceCommaToDot);
+    return finalNumber;
+};
 
 main();
