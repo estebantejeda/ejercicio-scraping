@@ -29,12 +29,12 @@ async function main() {
             const porIngresos = stringToNumber(porIng);
             const multidimensional = stringToNumber(multDim);
             return {
+                unidadTerritorial: uniTer,
                 porIngresos,
                 multidimensional,
                 date,
+                extractionLevel: extractionType.COMUNAL,
                 url: URL,
-                unidadTerritorial: uniTer,
-                extractionLevel: extractionType.COMUNAL
             } as TasaPobreza;
         }).get();
 
@@ -47,12 +47,12 @@ async function main() {
             const personasCarentes = stringToNumber(perCar);
             const hogaresHacinados = stringToNumber(hogHac);
             return { 
+                unidadTerritorial: uniTer,
                 personasCarentes, 
                 hogaresHacinados,
                 date,
-                unidadTerritorial: uniTer,
+                extractionLevel: extractionType.COMUNAL,
                 url: URL,
-                extractionLevel: extractionType.COMUNAL
             } as PoblacionCarente;
         }).get();
 
