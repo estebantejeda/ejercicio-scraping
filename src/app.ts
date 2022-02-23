@@ -26,7 +26,7 @@ async function main() {
     $("#v-pills-2").each((_idx, elem) => {
         const tables = $(elem).find("table");
 
-        tasPobArr = $(tables[0]).find("tr").map(async (_idx, elem) => {
+        tasPobArr = $(tables[0]).find("tr").map((_idx, elem) => {
             const tds = $(elem).find("td");
             const uniTer = $(tds[0]).text().trim();
             const porIng = $(tds[1]).text().trim();
@@ -42,12 +42,10 @@ async function main() {
                 extractionLevel: extractionType.COMUNAL,
                 url: URL,
             };
-            const tasPob = new TasaPobreza(data);
-            tasPob.save();
             return data;
         }).get();
 
-        poblCarArr = $(tables[1]).find("tr").map(async (_idx, elem) => {
+        poblCarArr = $(tables[1]).find("tr").map((_idx, elem) => {
             const tds = $(elem).find("td");
             const uniTer = $(tds[0]).text().trim();
             const perCar = $(tds[1]).text().trim();
@@ -63,8 +61,6 @@ async function main() {
                 extractionLevel: extractionType.COMUNAL,
                 url: URL,
             };
-            const poblCar = new PoblacionCarente(data);
-            await poblCar.save();
             return data;
         }).get();
 
@@ -75,6 +71,9 @@ async function main() {
     
     tasPobArrCsv.save("tasa");
     poblCarArrCsv.save("poblacion");
+
+    newTasPob(tasPobArr);
+    newPoblCar(poblCarArr);
 }
 
 
@@ -82,6 +81,20 @@ const stringToNumber = (textNumber: string): Number => {
     const replaceCommaToDot = textNumber.replace(",", ".");
     const finalNumber = parseFloat(replaceCommaToDot);
     return finalNumber;
+};
+
+const newTasPob = (tasPobArr: ITasaPobreza[]) => {
+    tasPobArr.forEach(async tasPob => {
+        const newTasPob = new TasaPobreza(tasPob);
+        console.log(await newTasPob.save());
+    });
+};
+
+const newPoblCar = (poblCar: IPoblacionCarente[]) => {
+    poblCar.forEach(async poblCar => {
+        const newPoblCar = new PoblacionCarente(poblCar);
+        console.log(await newPoblCar.save());
+    });
 };
 
 main();
