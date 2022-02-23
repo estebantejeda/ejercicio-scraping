@@ -1,9 +1,9 @@
 import DataInformation from "./DataInformation";
 
 interface PoblacionCarente extends DataInformation{
-    unidadTerritorial: string;
-    personasCarentes: number;
-    hogaresHacinados: number;
+    unidadTerritorial: String;
+    personasCarentes: Number;
+    hogaresHacinados: Number;
 }
 
 export default PoblacionCarente;
