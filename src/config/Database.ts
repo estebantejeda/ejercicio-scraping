@@ -11,7 +11,7 @@ class Database {
         catch(error){
             throw error;
         }
-        console.log(`DB connected on port ${config.DB_PORT}`);
+        console.log(`DB ${config.DB_NAME} connected on port ${config.DB_PORT}`);
     }
 }
 

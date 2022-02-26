@@ -86,14 +86,14 @@ const stringToNumber = (textNumber: string): Number => {
 const newTasPob = (tasPobArr: ITasaPobreza[]) => {
     tasPobArr.forEach(async tasPob => {
         const newTasPob = new TasaPobreza(tasPob);
-        console.log(await newTasPob.save());
+        await newTasPob.save();
     });
 };
 
 const newPoblCar = (poblCar: IPoblacionCarente[]) => {
     poblCar.forEach(async poblCar => {
         const newPoblCar = new PoblacionCarente(poblCar);
-        console.log(await newPoblCar.save());
+        await newPoblCar.save();
     });
 };
 
