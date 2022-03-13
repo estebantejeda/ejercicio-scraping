@@ -2,12 +2,12 @@ import * as dotenv from "dotenv";
 import path from "path";
 
 class Config{
-    #DB_USER: string;
-    #DB_PASS: string;
-    #DB_HOST: string;
-    #DB_PORT: string;
-    #DB_NAME: string;
-    #DB_URL: string;
+    readonly #DB_USER: string;
+    readonly #DB_PASS: string;
+    readonly #DB_HOST: string;
+    readonly #DB_PORT: string;
+    readonly #DB_NAME: string;
+    readonly #DB_URL: string;
 
     constructor(){
         dotenv.config({path: path.resolve(__dirname, "../../.env")});

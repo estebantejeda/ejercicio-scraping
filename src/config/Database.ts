@@ -3,6 +3,7 @@ import Config from "./Config";
 
 class Database {
     private constructor(){}
+
     static async connect(){
         const config = new Config();
         try{
