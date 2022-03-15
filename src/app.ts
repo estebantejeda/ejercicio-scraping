@@ -9,6 +9,7 @@ import TasaPobreza from "./Models/TasaPobreza";
 import PoblacionCarente from "./Models/PoblacionCarente";
 
 const URL = "https://www.bcn.cl/siit/reportescomunales/comunas_v.html?anno=2020&idcom=14101";
+
 main();
 
 async function main() {
@@ -29,7 +30,7 @@ const savePage = async (): Promise<string> => {
     return bcn.html;
 };
 
-const extractData = (html: string) => {
+const extractData = (html: string): {tasPobArr: ITasaPobreza[], poblCarArr: IPoblacionCarente[]} => {
     let tasPobArr: ITasaPobreza[] = [];
     let poblCarArr: IPoblacionCarente[] = [];
     const date = new Date();
