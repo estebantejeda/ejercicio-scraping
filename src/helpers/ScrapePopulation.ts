@@ -17,7 +17,7 @@ class ScrapePopulation {
 
 	extractData(): IPoblacionCarente[] {
 		const $ = cheerio.load(this.#html);
-		return $("#v-pills-2 table").map((_idx, elem) => {
+		return $("#v-pills-2 table tr").map((_idx, elem) => {
 			const tds = $(elem).find("td");
 			const unidadTerritorial = $(tds[0]).text().trim();
 			const personasCarentesTemp = $(tds[1]).text().trim();
