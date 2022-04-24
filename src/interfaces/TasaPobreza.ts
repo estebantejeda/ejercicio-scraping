@@ -1,9 +1,9 @@
 import DataInformation from "./DataInformation";
 
 interface TasaPobreza extends DataInformation{
-    unidadTerritorial: String;
-    porIngresos: Number;
-    multidimensional: Number;
+    unidadTerritorial: string;
+    porIngresos: number;
+    multidimensional: number;
 }
 
 export default TasaPobreza;
