@@ -1,5 +1,6 @@
 import path from "path";
 import fs from "fs";
+import {Model} from "mongoose";
 
 class Save {
 	static toCsv(data: string, name?: string) {
@@ -18,6 +19,13 @@ class Save {
 		if(!fs.existsSync(dir)) fs.mkdirSync(dir);
 		fs.writeFileSync(file, data);
 		console.info("HTML saved");
+	}
+
+	static toDB<Type>(json: Array<Type>, model: Model<Type>) {
+		json.forEach(async data => {
+			const newModel = new model(data);
+			await newModel.save();
+		});
 	}
 }
 
